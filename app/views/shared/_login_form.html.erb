@@ -1,0 +1,15 @@
+<h2>ログイン</h2>
+<% if flash.alert %>
+  <p><%= flash.alert %></p>
+<% end %>
+<%= form_tag :session,id: "login_form" do %>
+    <div>
+        <label>ユーザー名</label>
+        <input type="text" name="name">
+    </div>
+    <div>
+        <label>パスワード名</label>
+        <input type="password" name="password">
+    </div>
+    <input type="submit" value="ログイン">
+<% end %>

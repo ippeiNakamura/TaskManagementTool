@@ -1,0 +1,19 @@
+<h1>タスクの新規追加</h1>
+<%= form_for [@user,@task] do |f| %>
+    <table>
+        <tr>
+            <th>タスク名</th>
+            <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+            <th>想定工数</th>
+            <td><%= f.number_field :assumptionCost,step: "0.25"%></td>
+        </tr>
+        <tr>
+            <th>メモ</th>
+            <td><%= f.text_area :memo%></td>
+        </tr>
+            
+    </table>
+    <%= f.submit value:"追加"%>
+<% end %>

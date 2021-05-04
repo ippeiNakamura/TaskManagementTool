@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
             if user.projects.count == 0
                 redirect_to new_user_project_path(user)
             else
-                redirect_to user_top_path(user)
+                redirect_to user_projects_path(user)
             end
             
         else

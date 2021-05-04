@@ -1,0 +1,10 @@
+<h1>目標の設定</h1>
+<%= form_for [@user,@project,@work_target,@flag] do |f| %>
+<table>
+    <tr>
+        <th>フラグ名</th>
+        <td><%= f.text_field :name %></td>
+    </tr>
+</table>
+<%= f.submit "追加"%>
+<% end %>

@@ -1,0 +1,14 @@
+<h1><%= @project.name %></h1>
+<%= link_to  "作業対象の追加", new_user_project_work_target_path %>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>対象</th>
+    </tr>
+    <% @work_targets.each do |w| %> 
+    <tr>
+        <td><%= w.id %></td>
+        <td><%= link_to w.name, user_project_work_target_top_path(@user,@project,w.id) %></td>
+    </tr>
+    <% end %>
+</table>

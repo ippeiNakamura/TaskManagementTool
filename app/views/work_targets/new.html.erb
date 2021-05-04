@@ -1,0 +1,10 @@
+<h1>作業対象の追加</h1>
+<%= form_for [@user,@project,@work_target] do |f| %>
+<table>
+    <tr>
+        <th>作業対象</th>
+        <td><%= f.text_field :name %></td>
+    </tr>
+</table>
+<%= f.submit value:"追加"%>
+<% end %>

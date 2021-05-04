@@ -1,0 +1,2 @@
+module WorkTargetsHelper
+end

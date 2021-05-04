@@ -1,0 +1,13 @@
+<h1><%= @work_target.name %></h1>
+<h2>フラグ一覧</h2>
+<%= link_to  "フラグの追加", new_user_project_work_target_flag_path %>
+<table>
+    <tr>
+        <th>フラグ名</th>
+    </tr>
+    <% @flags.each do |f| %>
+        <tr>
+            <td><%= f.name %></td>
+        </tr>
+    <% end %>
+</table>

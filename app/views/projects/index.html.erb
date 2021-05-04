@@ -1,2 +1,13 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<h1>プロジェクト一覧</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>プロジェクト名</th>
+    </tr>
+    <% @projects.each do |project| %> 
+        <tr>
+            <td><%= project.id %></td>
+            <td><%= link_to project.name, user_project_work_targets_path(@user,project.id) %></td>
+        </tr>
+    <% end %>
+</table>

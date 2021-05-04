@@ -1,5 +1,8 @@
 class ProjectsController < ApplicationController
   def index
+    @user = User.find(params[:user_id])
+    @projects = @user.projects
+    
   end
 
   def new
@@ -10,6 +13,7 @@ class ProjectsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @project = Project.new(project_params)
+    @project.user_id = @user.id 
     if @project.save
       redirect_to user_projects_path(@user),notice: "プロジェクトを登録しました。"
     else

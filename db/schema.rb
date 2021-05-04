@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_03_021653) do
+ActiveRecord::Schema.define(version: 2021_05_04_010626) do
+
+  create_table "flags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "work_target_id"
+    t.index ["work_target_id"], name: "index_flags_on_work_target_id"
+  end
 
   create_table "projects", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
@@ -21,7 +29,6 @@ ActiveRecord::Schema.define(version: 2021_05_03_021653) do
   end
 
   create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id"
     t.string "name"
     t.string "status"
     t.float "assumptionCost"
@@ -29,7 +36,8 @@ ActiveRecord::Schema.define(version: 2021_05_03_021653) do
     t.string "memo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_tasks_on_user_id"
+    t.bigint "flag_id"
+    t.index ["flag_id"], name: "index_tasks_on_flag_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -41,6 +49,17 @@ ActiveRecord::Schema.define(version: 2021_05_03_021653) do
     t.string "name"
   end
 
+  create_table "work_targets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "project_id"
+    t.string "name"
+    t.string "category"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_work_targets_on_project_id"
+  end
+
+  add_foreign_key "flags", "work_targets"
   add_foreign_key "projects", "users"
-  add_foreign_key "tasks", "users"
+  add_foreign_key "tasks", "flags"
+  add_foreign_key "work_targets", "projects"
 end

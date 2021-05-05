@@ -1,9 +1,16 @@
-<h1>タスクの新規追加</h1>
-<%= form_for [@user,@task] do |f| %>
+<h1><%= @title_text + "の追加"　%></h1>
+<%= form_for([@user,@project,@work_target,@flag,@task]) do |f| %>
     <table>
         <tr>
             <th>タスク名</th>
             <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+            <th>サブタスク</th>
+            <td>
+                <button>新規追加</button>
+                <button>選択する</button>
+            </td>
         </tr>
         <tr>
             <th>想定工数</th>

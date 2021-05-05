@@ -1,5 +1,7 @@
 class FlagsController < ApplicationController
   def index
+    @user = User.find(params[:user_id])
+    @project = Project.find(params[:project_id])
     @work_target = WorkTarget.find(params[:work_target_id])
     @flags = @work_target.flags
   end
@@ -28,6 +30,8 @@ class FlagsController < ApplicationController
   end
 
   def show
+    @flag = Flag.find(params[:id])
+    
   end
 
   def destory

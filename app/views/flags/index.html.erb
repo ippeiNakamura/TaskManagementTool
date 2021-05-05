@@ -7,7 +7,9 @@
     </tr>
     <% @flags.each do |f| %>
         <tr>
-            <td><%= f.name %></td>
+            <td>
+                <%= link_to  f.name, user_project_work_target_flag_top_path(@user,@project,@work_target,f.id) %>
+            </td>
         </tr>
     <% end %>
 </table>

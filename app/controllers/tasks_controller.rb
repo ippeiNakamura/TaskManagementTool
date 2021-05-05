@@ -1,42 +1,77 @@
 class TasksController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-    @tasks = @user.tasks
+    @project = Project.find(params[:project_id])
+    @work_target = WorkTarget.find(params[:work_target_id])
+    @flag = Flag.find(params[:flag_id])
+    @tasks = @flag.tasks
     @assumptionTotalCost = @tasks.sum(:assumptionCost)
     @assumptionday = (@assumptionTotalCost / 7).ceil
     @completionDate = @assumptionday.business_days.from_now.to_time
     @releaseDate = Time.now
-    #inding.pry
     @progress = progress(@completionDate,@releaseDate)
-    
+    if params[:format]
+      #binding.pry
+      @title_text = "サブタスク"
+    else
+      @task = Task.new
+      @title_text = "タスク"
+    end
   end
 
   def new
     @user = User.find(params[:user_id])
-    @task = Task.new
+    @project = Project.find(params[:project_id])
+    @work_target = WorkTarget.find(params[:work_target_id])
+    @flag = Flag.find(params[:flag_id])
+    binding.pry
+    if params[:format]
+      
+      @task = Task.find(params[:format])
+      @title_text = "サブタスク"
+    else
+      @task = Task.new
+      @title_text = "タスク"
+    end
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @task = Task.new(task_params)
-    @task.user_id = params[:user_id]
-    #Task.create(params[:task])
+    binding.pry
+      @task = Task.new(task_params)
+      @task.flag_id = params[:flag_id]
     if @task.save!
-      redirect_to user_tasks_path(@user),notice:"正常に登録されました。"
+      redirect_to user_project_work_target_flag_tasks_path,notice:"正常に登録されました。"
     else
       flash.now[:alert] = "登録できませんでした。"  
     end
-    
-
   end
-
+  def sub_task_create
+    @task = Task.find(params[:format]).children.new(task_params)
+    
+    binding.pry
+    
+  end
   def edit
   end
 
   def update
+    #binding.pry
+
   end
 
   def show
+    @user = User.find(params[:user_id])
+    @project = Project.find(params[:project_id])
+    @work_target = WorkTarget.find(params[:work_target_id])
+    @flag = Flag.find(params[:flag_id])
+    @task = Task.find(params[:id])
+    @task_child = Task.find(params[:id]).children
+    #binding.pry
+    if params[:id]
+      @title_text = "サブタスク"
+    else
+      @title_text = "タスク"
+    end
   end
 
   def destroy
@@ -57,8 +92,4 @@ class TasksController < ApplicationController
       @progress = (completionDate.to_date - releaseDate.to_date).to_i.to_s + "日遅れ"
     end
   end
-  
-  
-  
-  
 end

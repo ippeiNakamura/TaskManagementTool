@@ -10,7 +10,7 @@
     <% @work_targets.each do |w| %> 
     <tr>
         <td><%= w.id %></td>
-        <td><%= link_to w.name, user_project_work_target_top_path(@user,@project,w.id) %></td>
+        <td><%= link_to w.name, user_project_work_target_flags_path(@user,@project,w.id) %></td>
     </tr>
     <% end %>
 </table>

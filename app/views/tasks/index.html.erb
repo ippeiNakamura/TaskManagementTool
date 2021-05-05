@@ -1,25 +1,28 @@
-<h1>タスク一覧</h1>
-<%= link_to  "タスクの追加", new_user_task_path %>
+<h1><%= @flag.name %></h1>
+<%= link_to  @title_text + "の追加", new_user_project_work_target_flag_task_path %>
 <p>想定総工数：<%= @assumptionTotalCost %></p>
 <p>想定日数：<%= @assumptionday %></p>
 <p>完了予定日：<%= l @completionDate %></p>
 <p>納品予定日：<%= l @releaseDate %></p>
 <p>進捗：<%= @progress %></p>
 <table>
+        
     <tr>
+
+        <th>ID</th>
         <th>タスク名</th>
         <th>ステータス</th>
-        <th>フラグ名</th>
+        <th>サブタスク</th>
         <th>想定工数</th>
         <th>実際工数</th>
     </tr>
     <% @tasks.each do |t| %>
         <tr>
-            <td><%= t.name %></td>
+            <td><%= t.id %></td>
+            <td><%= link_to  t.name, user_project_work_target_flag_task_path(@user,@project,@work_target,@flag,t.id) %></td>
             <td><%= t.status %></td>
             <td></td>
             <td><%= t.assumptionCost %></td>
-            
         </tr>
     <% end %>
 </table>

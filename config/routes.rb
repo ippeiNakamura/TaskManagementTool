@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   resources :users do
     resources :projects do
       resources :work_targets do
-        resource :top,only: [:show]
-          resources :flags do
-            resources :tasks do
-            end
+        resources :flags do
+          resource :top,only: [:show]
+          resources :tasks do
           end
+        end
       end
     end
   end

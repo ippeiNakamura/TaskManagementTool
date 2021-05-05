@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_04_010626) do
+ActiveRecord::Schema.define(version: 2021_05_04_231125) do
 
   create_table "flags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -37,7 +37,16 @@ ActiveRecord::Schema.define(version: 2021_05_04_010626) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "flag_id"
+    t.integer "parent_id"
+    t.integer "lft"
+    t.integer "rgt"
+    t.integer "depth"
+    t.integer "children_count"
+    t.index ["depth"], name: "index_tasks_on_depth"
     t.index ["flag_id"], name: "index_tasks_on_flag_id"
+    t.index ["lft"], name: "index_tasks_on_lft"
+    t.index ["parent_id"], name: "index_tasks_on_parent_id"
+    t.index ["rgt"], name: "index_tasks_on_rgt"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

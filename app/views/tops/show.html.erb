@@ -1,4 +1,3 @@
-<h1><%= @work_target.name %></h1>
-<%= link_to  "目標設定", user_project_work_target_flags_path %>
-<%= link_to  "タスク管理", "#" %>
+<h1><%= @flag.name %></h1>
+<%= link_to  "タスク管理",user_project_work_target_flag_tasks_path()  %>
 <%= link_to  "スケジューリング", "#" %>

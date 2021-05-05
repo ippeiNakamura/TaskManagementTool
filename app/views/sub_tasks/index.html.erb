@@ -1,5 +1,6 @@
+
 <h1><%= @flag.name %></h1>
-<%= link_to  @title_text + "の追加", new_user_project_work_target_flag_task_path %>
+<%= link_to  @title_text + "の追加", new_user_project_work_target_flag_task_sub_task_path %>
 <p>想定総工数：<%= @assumptionTotalCost %></p>
 <p>想定日数：<%= @assumptionday %></p>
 <p>完了予定日：<%= l @completionDate %></p>
@@ -16,7 +17,7 @@
         <th>想定工数</th>
         <th>実際工数</th>
     </tr>
-    <% @tasks.each do |t| %>
+    <% @sub_tasks.each do |t| %>
         <tr>
             <td><%= t.id %></td>
             <td><%= link_to  t.name, user_project_work_target_flag_task_sub_tasks_path(@user,@project,@work_target,@flag,t.id) %></td>

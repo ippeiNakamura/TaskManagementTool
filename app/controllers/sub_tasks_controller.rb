@@ -1,20 +1,20 @@
-class TasksController < ApplicationController
+class SubTasksController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @project = Project.find(params[:project_id])
     @work_target = WorkTarget.find(params[:work_target_id])
     @flag = Flag.find(params[:flag_id])
-    @tasks = @flag.tasks
-    @assumptionTotalCost = @tasks.sum(:assumptionCost)
+    @task = Task.find(params[:task_id])
+    @sub_tasks = @task.children
+    @assumptionTotalCost = @sub_tasks.sum(:assumptionCost)
     @assumptionday = (@assumptionTotalCost / 7).ceil
     @completionDate = @assumptionday.business_days.from_now.to_time
     @releaseDate = Time.now
     @progress = progress(@completionDate,@releaseDate)
-    if params[:format]
+    if params[:task_id]
       #binding.pry
       @title_text = "サブタスク"
     else
-      @task = Task.new
       @title_text = "タスク"
     end
   end
@@ -24,8 +24,8 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @work_target = WorkTarget.find(params[:work_target_id])
     @flag = Flag.find(params[:flag_id])
-    @task = Task.new
-    @title_text = "タスク"
+    @sub_task = Task.find(params[:task_id]).children.new
+    @title_text = "サブタスク"
   end
 
   def create
@@ -38,7 +38,12 @@ class TasksController < ApplicationController
       flash.now[:alert] = "登録できませんでした。"  
     end
   end
- 
+  def sub_task_create
+    @task = Task.find(params[:format]).children.new(task_params)
+    
+    binding.pry
+    
+  end
   def edit
   end
 

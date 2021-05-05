@@ -5,9 +5,9 @@ class SubTasksController < ApplicationController
     @work_target = WorkTarget.find(params[:work_target_id])
     @flag = Flag.find(params[:flag_id])
     @task = Task.find(params[:task_id])
-    @sub_tasks = @task.children
+    @sub_tasks = @task.sub_tasks
     @assumptionTotalCost = @sub_tasks.sum(:assumptionCost)
-    @assumptionday = (@assumptionTotalCost / 7).ceil
+    @assumptionday = 0
     @completionDate = @assumptionday.business_days.from_now.to_time
     @releaseDate = Time.now
     @progress = progress(@completionDate,@releaseDate)
@@ -24,25 +24,20 @@ class SubTasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @work_target = WorkTarget.find(params[:work_target_id])
     @flag = Flag.find(params[:flag_id])
-    @sub_task = Task.find(params[:task_id]).children.new
+    @task = Task.find(params[:task_id])
+    @sub_task = SubTask.new
     @title_text = "サブタスク"
   end
 
   def create
-    binding.pry
-      @task = Task.new(task_params)
-      @task.flag_id = params[:flag_id]
-    if @task.save!
-      redirect_to user_project_work_target_flag_tasks_path,notice:"正常に登録されました。"
+      @sub_task = SubTask.new(task_params)
+      @sub_task.task_id = params[:task_id]
+      binding.pry
+    if @sub_task.save
+      redirect_to user_project_work_target_flag_task_sub_tasks_path,notice:"正常に登録されました。"
     else
       flash.now[:alert] = "登録できませんでした。"  
     end
-  end
-  def sub_task_create
-    @task = Task.find(params[:format]).children.new(task_params)
-    
-    binding.pry
-    
   end
   def edit
   end
@@ -71,7 +66,7 @@ class SubTasksController < ApplicationController
   end
   
   private def task_params
-    params.require(:task).permit(
+    params.require(:sub_task).permit(
       :name,
       :assumptionCost,
       :memo

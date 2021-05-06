@@ -24,14 +24,29 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @work_target = WorkTarget.find(params[:work_target_id])
     @flag = Flag.find(params[:flag_id])
-    @task = Task.new
-    @title_text = "タスク"
+    if params[:format]
+      #binding.pry
+      @task = Task.find(params[:format]).children.new(task_params) 
+      @title_text = "サブタスク"
+    else
+      @task = Task.new
+      @title_text = "タスク"
+    end
+
   end
 
   def create
     binding.pry
+    @user = User.find(params[:user_id])
+    @project = Project.find(params[:project_id])
+    @work_target = WorkTarget.find(params[:work_target_id])
+    @flag = Flag.find(params[:flag_id])
+    if @task
+      @task = Task.find(params[:format]).children.new(task_params) 
+    else
       @task = Task.new(task_params)
-      @task.flag_id = params[:flag_id]
+    end
+
     if @task.save!
       redirect_to user_project_work_target_flag_tasks_path,notice:"正常に登録されました。"
     else
@@ -64,7 +79,9 @@ class TasksController < ApplicationController
 
   def destroy
   end
-  
+  def sub_task_create
+    binding.pry
+  end
   private def task_params
     params.require(:task).permit(
       :name,

@@ -19,7 +19,7 @@
     <% @tasks.each do |t| %>
         <tr>
             <td><%= t.id %></td>
-            <td><%= link_to  t.name, user_project_work_target_flag_task_sub_tasks_path(@user,@project,@work_target,@flag,t.id) %></td>
+            <td><%= link_to  t.name, user_project_work_target_flag_task_path(@user,@project,@work_target,@flag,t.id) %></td>
             <td><%= t.status %></td>
             <td></td>
             <td><%= t.assumptionCost %></td>

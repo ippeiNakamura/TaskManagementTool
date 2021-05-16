@@ -34,7 +34,14 @@ class FlagsController < ApplicationController
     
   end
 
-  def destory
+  def destroy
+    @flag = Flag.find(params[:id])      
+      if @flag.destroy
+        flash[:notice] =  @flag.name  + 'を削除しました'
+      else
+        flash[:alert] =  @flag.name  + 'を削除できませんでした'
+      end
+      redirect_to request.referer
   end
   private def flag_params
     params.required(:flag).permit(:name)

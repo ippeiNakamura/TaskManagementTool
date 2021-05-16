@@ -1,2 +1,4 @@
-<h1>Tasks#edit</h1>
-<p>Find me in app/views/tasks/edit.html.erb</p>
+<h1><%= @flag.name + "_" + @task.name %></h1>
+<%= link_to  @task_category + "の追加", new_user_project_work_target_flag_task_path(@user,@project,@work_target,@flag,@task) %>
+<p>合計工数：<%= @assumptionTotalCost %></p>
+<%= render  "task_table" %>

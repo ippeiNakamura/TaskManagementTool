@@ -4,11 +4,17 @@
 <table>
     <tr>
         <th>フラグ名</th>
+        <th>削除</th>
     </tr>
     <% @flags.each do |f| %>
         <tr>
             <td>
                 <%= link_to  f.name, user_project_work_target_flag_top_path(@user,@project,@work_target,f.id) %>
+            </td>
+            <td>
+                <%= link_to [@user,@project,@work_target,f],method: :delete,data:{confirm:"本当に削除しますか？"} do %>
+                        <button>削除</button>
+                <% end %>
             </td>
         </tr>
     <% end %>

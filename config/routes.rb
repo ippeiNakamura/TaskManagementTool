@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         resources :flags do
           resource :top,only: [:show]
           resources :tasks do
+
           end
         end
       end

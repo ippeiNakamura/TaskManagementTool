@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root "users#index"
   resources :users do
     resources :projects do
@@ -6,7 +7,8 @@ Rails.application.routes.draw do
         resources :flags do
           resource :top,only: [:show]
           resources :tasks do
-
+          end
+          resources :schedules do
           end
         end
       end

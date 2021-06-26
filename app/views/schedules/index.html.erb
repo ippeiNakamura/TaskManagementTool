@@ -1,2 +1,36 @@
+
 <h1><%= @title %></h1>
-<%= javascript_pack_tag 'hello_vue' %>
+ <div id='unassigned-tasks'>
+    <div id='unassigned-tasks-list'>
+        <h4>タスク</h4>
+            <%= %>
+            <div class='unassigned-task'></div>
+    </div>
+ </div>
+	
+ <div id='mydraggable'><%= @task.name %></div>
+
+<!-- モーダルボタン -->
+    <a href="#modal">モーダルボタン</a>
+    
+    <!-- モーダルに出てくる内容 -->
+    <div class="remodal" data-remodal-id="modal">
+        <form action="">
+            <label for="">タスク：</label>
+            <%= button_to '選択する',user_project_work_target_flag_tasks_path,method: :get  %>
+            <label for="">開始時刻:</label>
+            <input type="time">
+
+            <label for="">終了時刻:</label>
+            <input type="time">
+        </form>
+        <!-- クローズボタン -->
+        <button data-remodal-action="close" class="remodal-close"></button>
+    
+    </div>
+
+<%= javascript_pack_tag 'calendar/event' %>
+<div id='calendar'></div>
+
+
+

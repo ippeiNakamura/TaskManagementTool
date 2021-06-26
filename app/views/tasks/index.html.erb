@@ -5,6 +5,7 @@
 <p>完了予定日：<%= l @completionDate %></p>
 <p>納品予定日：<%= l @releaseDate %></p>
 <p>進捗：<%= @progress %></p>
+
 <%= render  partial: "task_edit_table", locals:{
     user: @user,
     project: @project,

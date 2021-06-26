@@ -2,6 +2,7 @@
     before_action :initial_model
 
     def index
+      @check_list = CheckList.new()
       task_category_colection
       assumption_total_Cost(@tasks)
       assumptionday(@assumptionTotalCost)
@@ -83,7 +84,6 @@
         if completionDate <= releaseDate
           @progress = "予定通り"
         else
-          #binding.pry
           @progress = (completionDate.to_date - releaseDate.to_date).to_i.to_s + "日遅れ"
         end
       end

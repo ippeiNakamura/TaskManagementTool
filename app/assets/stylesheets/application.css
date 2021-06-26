@@ -34,3 +34,14 @@ a {
 a:hover {
   color: orange;
 }
+.check_table,
+.task_table {
+  float: left;
+}
+.check_table tr:not(:nth-child(1)),
+.task_table tr:not(:nth-child(1)) {
+  height: 52px;
+}
+.tableContainer {
+  overflow: hidden;
+}

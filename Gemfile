@@ -28,7 +28,7 @@ gem 'holiday_jp'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'pry-rails'
 gem 'pry-byebug'
-
+gem 'gon'
 gem 'rb-readline'
 gem 'awesome_nested_set'
 group :development, :test do

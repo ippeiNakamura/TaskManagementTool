@@ -1,15 +1,4 @@
-
 <h1><%= @title %></h1>
- <div id='unassigned-tasks'>
-    <div id='unassigned-tasks-list'>
-        <h4>タスク</h4>
-            <%= %>
-            <div class='unassigned-task'></div>
-    </div>
- </div>
-	
- <div id='mydraggable'><%= @task.name %></div>
-
 <!-- モーダルボタン -->
     <a href="#modal">モーダルボタン</a>
     
@@ -29,8 +18,21 @@
     
     </div>
 
-<%= javascript_pack_tag 'calendar/event' %>
-<div id='calendar'></div>
+<div class='main-wrap'>
+    <div id='unassigned-tasks'>
+        <div id='unassigned-tasks-list'>
+            <h4>タスク</h4>
+                <% @tasks.each do |t| %>
+                <div id='mydraggable' data-t-id=<% t.to_json %>>
+                    <%= t.name %>
+                </div> 
+                <% end %>
+        </div>
+    </div>
+    <%= javascript_pack_tag 'calendar/event' %>
+    <div id='calendar'></div>
+    
+</div>
 
 
 

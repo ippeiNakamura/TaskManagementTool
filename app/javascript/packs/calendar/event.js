@@ -4,6 +4,9 @@ import interactionPlugin,{ Draggable } from '@fullcalendar/interaction';
 import monthGridPlugin　from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid';
 
+var task = $('#mydraggable').data('t-id')
+var taskName = task.Name
+var taskTime = task.assumptionCost
 
 document.addEventListener('DOMContentLoaded', function () {
     var draggableEl = document.getElementById('mydraggable'); //ドラッグ&ドロップ用の要素
@@ -61,8 +64,8 @@ document.addEventListener('DOMContentLoaded', function () {
     //カレンダー外のドラッグ&ドロップ要素の設定
     new Draggable(draggableEl, {
         eventData: {
-            title: gon.task_name,
-            duration: gon.time,
+            title: taskName,
+            duration: taskTime,
         },
     });
 

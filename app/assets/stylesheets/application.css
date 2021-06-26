@@ -45,3 +45,14 @@ a:hover {
 .tableContainer {
   overflow: hidden;
 }
+#unassigned-tasks {
+  float: left;
+  width: 150px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  background: #eee;
+  text-align: left;
+}
+.main-wrap {
+  float: left;
+}

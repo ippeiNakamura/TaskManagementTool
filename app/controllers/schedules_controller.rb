@@ -1,10 +1,13 @@
 class SchedulesController < ApplicationController
   def index
     @title = 'スケジューリング'
-    @task = Task.find(100)
-    @tasks = Task
-    gon.task_name = @task.name
-    gon.time = @task.assumptionCost
+    @user = User.find(params[:user_id])
+    @project = Project.find(params[:project_id])
+    @work_target = WorkTarget.find(params[:work_target_id])
+    @flags = @work_target.flags
+    @tasks = Task.all
+    #gon.task_name = @task.name
+    #gon.time = @task.assumptionCost
 
     #binding.pry
   end

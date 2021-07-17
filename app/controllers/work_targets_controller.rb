@@ -3,6 +3,8 @@ class WorkTargetsController < ApplicationController
     @user = User.find(params[:user_id])
     @project = Project.find(params[:project_id])
     @work_targets = @project.work_targets
+    render json: @work_targets.select(:id,:name)
+
   end
 
   def new
@@ -36,8 +38,20 @@ class WorkTargetsController < ApplicationController
   end
 
   def destroy
+
   end
   private def work_target_params
     params.require(:work_target).permit(:name)
+  end
+  
+  def create_worktarget
+    #業務対象の取得
+    @user = User.find(params[:user_id])
+    @project = Project.find(params[:project_id])
+    @work_targets = @project.work_targets
+    #json形式のレスポンスを返す
+    respond_to do |format|
+      format.json { render json: @work_targets } 
+    end
   end
 end

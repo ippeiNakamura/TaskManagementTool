@@ -1,5 +1,5 @@
 //インストールしたファイルたちを呼び出します。
-import { Calendar } from '@fullcalendar/core';
+import { Calendar, computeShrinkWidth } from '@fullcalendar/core';
 import interactionPlugin,{ Draggable } from '@fullcalendar/interaction';
 import monthGridPlugin　from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -7,6 +7,54 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 var task = $('#mydraggable').data('t-id')
 var taskName = task.Name
 var taskTime = task.assumptionCost
+
+//子セレクトボックスを生成するメソッド
+function replaceChildrenOptions() {
+    //子カテゴリーのPath取得
+    var childrenPath = $(this).find('option:selected').data().childrenPath
+    //子カテゴリーのセレクトボックスを取得
+    var selectChildren = $('form').find('.select-children')
+    
+
+    //子要素のパスが有る場合
+    if (childrenPath) {
+
+        //ajax設定
+        $.ajax({
+            url: childrenPath,
+            dataType: 'json'
+        })
+            //サーバーから値を受け取った時
+            .done(function (data) {
+                //サーバーから受け取った子カテゴリーでセレクトボックスを置き換える
+                replaceSelectOptions(selectChildren, data)
+                //html = buildHTML(data);
+                //alert(html)
+                //$('.comments').append(html);
+            })
+            //サーバーからの受け取りに失敗した時
+            .fail(function (data) {
+            // 受け取り失敗の場合の処理
+            });
+    }
+    //子要素のパスが無い場合
+    else {
+        
+        replaceSelectOptions(selectChildren, [])
+    }
+}
+//子セレクトボックスのoptionタグを置換するメソッド
+function replaceSelectOptions(selectChildren, data) {
+    selectChildren.html('<option>')
+    Object.keys(data).forEach(function(key) {
+        console.log(data[key])
+        //セレクトボックスにオプションを追加
+        selectChildren.append($('<option>').html(data[key].name).val(key));
+    })
+}
+
+//プロジェクトのセレクトボックスの変化を検知
+$(document).on('change', ".edit_user", replaceChildrenOptions)
 
 document.addEventListener('DOMContentLoaded', function () {
     var draggableEl = document.getElementById('mydraggable'); //ドラッグ&ドロップ用の要素

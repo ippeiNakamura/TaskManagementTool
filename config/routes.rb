@@ -8,10 +8,12 @@ Rails.application.routes.draw do
           resources :tasks do
           end
           resources :schedules do
+          get 'ajax',to: 'schedules#ajax'
           end
         end
       end
     end
   end
+
   resource :session,only: [:create,:destroy]
 end

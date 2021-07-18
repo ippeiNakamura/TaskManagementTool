@@ -1,0 +1,23 @@
+/*――――――――――――――――――――――――――――――――――
+/* ヘッダー
+――――――――――――――――――――――――――――――――――――*/
+header {
+  border-bottom: 2px solid orange;
+}
+.header-inner {
+  max-width: 1040px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+}
+.heder-nav {
+  position: relative;
+}
+.header-navList {
+  display: flex;
+  position: absolute;
+  top: 40px;
+}
+.header-navList li {
+  margin: 0 20px;
+}

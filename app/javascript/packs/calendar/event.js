@@ -12,6 +12,7 @@ var taskTime = task.assumptionCost
 function replaceChildrenOptions() {
     //子カテゴリーのPath取得
     var childrenPath = $(this).find('option:selected').data().childrenPath
+    alert(childrenPath)
     //子カテゴリーのセレクトボックスを取得
     var selectChildren = $('form').find('.select-children')
     
@@ -49,12 +50,15 @@ function replaceSelectOptions(selectChildren, data) {
     Object.keys(data).forEach(function(key) {
         console.log(data[key])
         //セレクトボックスにオプションを追加
-        selectChildren.append($('<option>').html(data[key].name).val(key));
+        selectChildren.append($('<option>').html(data[key].name).val(key).data('children-path',));
     })
 }
 
 //プロジェクトのセレクトボックスの変化を検知
 $(document).on('change', ".edit_user", replaceChildrenOptions)
+
+//作業対象のセレクトボックスの変化を検知
+$(document).on('change', ".edit_project", replaceChildrenOptions)
 
 document.addEventListener('DOMContentLoaded', function () {
     var draggableEl = document.getElementById('mydraggable'); //ドラッグ&ドロップ用の要素

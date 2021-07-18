@@ -1,3 +1,6 @@
+.main {
+  margin: 20px auto;
+}
 table,
 td,
 th {
@@ -30,6 +33,7 @@ h1 {
 }
 a {
   color: black;
+  text-decoration: none¥;
 }
 a:hover {
   color: orange;
@@ -55,4 +59,12 @@ a:hover {
 }
 .main-wrap {
   float: left;
+}
+ul {
+  list-style: none;
+}
+.text-center-small {
+  margin-top: 3px;
+  font-size: 12px;
+  text-align: center;
 }

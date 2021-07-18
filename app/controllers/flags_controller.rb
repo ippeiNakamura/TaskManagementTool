@@ -4,6 +4,8 @@ class FlagsController < ApplicationController
     @project = Project.find(params[:project_id])
     @work_target = WorkTarget.find(params[:work_target_id])
     @flags = @work_target.flags
+    render json: @flags.select(:id,:name)
+
   end
 
   def new

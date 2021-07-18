@@ -1,6 +1,44 @@
+<%# タイトル %>
+    <h1><%= @title %></h1>
+<%# タスクバー %>
+    <div id='task-bar'>
+        <div id='unassigned-tasks'>
+            <div id='unassigned-tasks-list'>
+                <%# プロジェクトの選択ボックス %>
+                    <%= form_for @user do |f| %>
+                        <% project_otptions = @projects.order(:id).map{ |p| [p.name,p.id,data:{ children_path:user_project_work_targets_path(@user,p) }]}%>
+                        <%= f.label :project_ids, "プロジェクト名：" %>
+                        <%= f.select :project_ids,project_otptions, { include_blank: true },class:'select-parent' %>
+                    <% end %>
 
-<h1><%= @title %></h1>
+                <%# 作業対象の選択ボックス %>
+                    <%= form_for [@user,@project] do |f| %>
+                        <% work_targets = @project.try(:work_targets) %>
+                        <% work_target_options = work_targets.order(:id).map{ |w| [w.name,w.id,data:{children_path:user_project_work_target_flags_path(@user,@project,w)}]} %>
+                        <%= f.label :project_ids, "作業対象：" %>
+                        <%= f.select :work_target_ids,work_target_options,{ include_blank: true },class: 'select-children' %>
+                    <% end %>
+                
+                <%# 目標の選択ボックス %>
+                    <%= form_for [@user,@project,@work_target] do |f| %>
+                        <% flags = @work_target.try(:flags) %>
+                        <% flags_target_options = flags.order(:id).map{ |flag| [flag.name,flag.id]} %>
+                        <%= f.label :project_ids, "目標：" %>
+                        <%= f.select :flag_ids,flags_target_options,{ include_blank: true },class: 'select-children' %>
+                    <% end %>
 
+                <h4>タスク</h4>
+                    <% @tasks.each do |t| %>
+                    <div id='mydraggable' data-t-id=<% t.to_json %>>
+                        <%= t.name %>
+                    </div> 
+                    <% end %>
+            </div>
+         </div>
+    </div>
+<%# カレンダー %>
+    <%= javascript_pack_tag 'calendar/event' %>
+    <div id='calendar'></div>
 <!-- モーダルボタン -->
     <a href="#modal">モーダルボタン</a>
     
@@ -19,37 +57,6 @@
         <button data-remodal-action="close" class="remodal-close"></button>
     
     </div>
-    <p class='comments'>test</p>
-<div class='main-wrap'>
-    <div id='task-bar'>
-        <div id='select-project'>
-
-            <%= form_for @user do |f| %>
-                <% project_otptions = @projects.order(:id).map{ |p| [p.name,p.id,data:{ children_path:user_project_work_targets_path(@user,p) }]}%>
-                <%= f.select :project_ids,project_otptions, { include_blank: true },class:'select-parent' %>
-            <% end %>
-
-            <%= form_for [@user,@project] do |f| %>
-                <% work_targets = @project.try(:work_targets) %>
-                <% work_target_options = work_targets.order(:id).map{ |w| [w.name,w.id]} %>
-                <%= f.select :work_target_ids,work_target_options,{ include_blank: true },class: 'select-children' %>
-            <% end %>
-                
-        </div>
-        <div id='unassigned-tasks'>
-            <div id='unassigned-tasks-list'>
-                <h4>タスク</h4>
-                    <% @tasks.each do |t| %>
-                    <div id='mydraggable' data-t-id=<% t.to_json %>>
-                        <%= t.name %>
-                    </div> 
-                    <% end %>
-            </div>
-         </div>
-    </div>
-    <%= javascript_pack_tag 'calendar/event' %>
-    <div id='calendar'></div>
-    
 </div>
 
 

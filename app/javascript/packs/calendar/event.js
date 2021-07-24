@@ -89,6 +89,10 @@ function replaceSelectOptions(selectChildren, data) {
 
 //親セレクトボックス選択後のイベント
 $('#parent_category').on('change', function () {
+    //子・孫セレクトボックスの削除
+    removeChildrenBox();
+    removeGrandChildBox();
+
     //選択された親カテゴリーの名前を取得
     var parentCategory = document.getElementById('parent_category').value
     if (parentCategory != "---") { //親カテゴリーが初期値でない場合

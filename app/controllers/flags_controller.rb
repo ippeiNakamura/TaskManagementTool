@@ -48,4 +48,10 @@ class FlagsController < ApplicationController
   private def flag_params
     params.required(:flag).permit(:name)
   end
+  #親カテゴリーが選択された後に動くアクション
+  def get_category_children
+    #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
+    @category_children = Project.find(params[:parent_name]).work_targets
+    binding.pry
+  end
 end

@@ -3,7 +3,7 @@ class WorkTargetsController < ApplicationController
     @user = User.find(params[:user_id])
     @project = Project.find(params[:project_id])
     @work_targets = @project.work_targets
-    render json: @work_targets.select(:id,:name,:flag_id)
+    #render json: @work_targets.select(:id,:name,:flag_id)
 
   end
 

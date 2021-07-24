@@ -8,7 +8,11 @@ Rails.application.routes.draw do
           resources :tasks do
           end
           resources :schedules do
-          get 'ajax',to: 'schedules#ajax'
+              collection do
+                get 'get_category_children', defaults: { format: 'json' }
+                get 'get_category_grandchildren', defaults: { format: 'json' }
+              end
+          #get 'ajax',to: 'schedules#ajax'
           end
         end
       end

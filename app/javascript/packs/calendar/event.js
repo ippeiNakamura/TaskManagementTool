@@ -9,34 +9,39 @@ var task = $('#mydraggable').data('t-id')
 var taskName = task.Name
 var taskTime = task.assumptionCost
 
- // カテゴリーセレクトボックスのオプションを作成
+// セレクトボックスのoptionタグの生成
 function appendOption(category) {
     var html = `<option value=${category.id}>${category.name}</option>`
     return html
 }
- // 子カテゴリーの表示作成
+// 子セレクトボックスの生成
 function appendChidrenBox(insertHTML) {
     //子セレクトボックスのhtmlの生成
-    var childSelectHtml = `<select class="listing-select-wrapper__box--select" id="child_category" name="category_id">
+    var childSelectHtml = `<div id='children-select-wrapper'>
+    <label for='child_category'>作業対象：</label>
+        <select class="listing-select-wrapper__box--select" id="child_category" name="category_id">
         <option value="---">---</option>
         ${insertHTML}
-        </select>`
+        </select>
+    </div>`
     //子セレクトボックスに追加
     $('.listing-product-detail__category').append(childSelectHtml);
 }
- // 孫カテゴリーの表示作成
+// 孫カテゴリーの表示作成
 function appendGrandChidrenBox(insertHTML) {
     var grandchildSelectHtml = '';
     //孫セレクトボックスのhtmlの生成
-    var grandChildSelectHtml = `<select class="listing-select-wrapper__box--select" id="grand_child_category" name="grand_category_id">
+    var grandChildSelectHtml = `<div id='grand-children-select-wrapper'>
+    <label for='grand_child_category'>目標：</label>
+    <select class="listing-select-wrapper__box--select" id="grand_child_category" name="grand_category_id">
         <option value="---">---</option>
         ${insertHTML}
-        </select>`
+    </select>
+    </div>`
     //孫セレクトボックスに追加
     $('.listing-product-detail__category').append(grandChildSelectHtml);
 }
-
- //子セレクトボックス以下を削除
+//子セレクトボックス以下を削除
 function removeChildrenBox() {
     $('#child_category').remove();
 }
@@ -44,49 +49,7 @@ function removeChildrenBox() {
 function removeGrandChildBox() {
     $('#grand_child_category').remove();
 }
-//子セレクトボックスを生成するメソッド
-function replaceChildrenOptions() {
-    //子カテゴリーのPath取得
-    var childrenPath = $(this).find('option:selected').data().childrenPath
-    alert(childrenPath)
-    //子カテゴリーのセレクトボックスを取得
-    var selectChildren = $('form').find('.select-children')
     
-
-    //子要素のパスが有る場合
-    if (childrenPath) {
-
-        //ajax設定
-        $.ajax({
-            url: childrenPath,
-            dataType: 'json'
-        })
-            //サーバーから値を受け取った時
-            .done(function (data) {
-                //サーバーから受け取った子カテゴリーでセレクトボックスを置き換える
-                replaceSelectOptions(selectChildren, data);
-                appendChidrenBox(insertHTML);
-            })
-            //サーバーからの受け取りに失敗した時
-            .fail(function (data) {
-            // 受け取り失敗の場合の処理
-            });
-    }
-    //子要素のパスが無い場合
-    else {
-        replaceSelectOptions(selectChildren, [])
-    }
-}
-//子セレクトボックスのoptionタグを置換するメソッド
-function replaceSelectOptions(selectChildren, data) {
-    selectChildren.html('<option>')
-    Object.keys(data).forEach(function(key) {
-        console.log(data[key])
-        //セレクトボックスにオプションを追加
-        selectChildren.append($('<option>').html(data[key].name).val(key).data('children-path',));
-    })
-}
-
 //親セレクトボックス選択後のイベント
 $('#parent_category').on('change', function () {
     //子・孫セレクトボックスの削除

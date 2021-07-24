@@ -4,13 +4,14 @@
     <div id='task-bar'>
         <%# プロジェクトのセレクトボックス %>
             <div class="listing-product-detail__category">
-                <%= form_for @user do |f| %>
-                    <%= f.label :project_ids, "プロジェクト名：" %>
-                    <%= f.select :project_ids,@projects.map{|project| [project.name,project.id]}, {},id:'parent_category' %>
-                <% end %>
+                <div id='parent-select-wrapper'>
+                    <%= form_for @user do |f| %>
+                        <%= label_tag :parent_category, "プロジェクト：" %>
+                        <%= f.select :project_ids,@projects.map{|project| [project.name,project.id]}, {},id:'parent_category' %>
+                    <% end %>
+                </div>
             </div>
             
-        
         <div id='unassigned-tasks'>
             <div id='unassigned-tasks-list'>
                 <h4>タスク</h4>

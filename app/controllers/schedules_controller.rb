@@ -8,12 +8,8 @@ class SchedulesController < ApplicationController
     @flags = @work_target.flags
     @tasks = Task.all
 
-    #セレクトボックスの初期値設定
-      @category_parent_array = ["---"]
-    #データベースから親カテゴリーのみ抽出し、配列化
-      #@projects.each do |project|
-        #@category_parent_array << project
-      #end
+    
+    
     gon.get_category_children = get_category_children_user_project_work_target_flag_schedules_path
     gon.get_grand_category_children = get_category_grandchildren_user_project_work_target_flag_schedules_path
 

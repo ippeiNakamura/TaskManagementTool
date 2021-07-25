@@ -8,54 +8,26 @@ import { getJSON } from 'jquery';
 var task = $('#mydraggable').data('t-id')
 var taskName = task.Name
 var taskTime = task.assumptionCost
+var insertHTML = ''
 
+//optionタグの初期化
+function appendInitialOption(selectBox) {
+    //selectBoxのoptionタグを削除
+    $(selectBox).children().remove()
+    //optionタグに'---'を追加
+    $(selectBox).append(`<option value="---">---</option>`);
+}         
 // セレクトボックスのoptionタグの生成
 function appendOption(category) {
-    var html = `<option value=${category.id}>${category.name}</option>`
+    var html = `<option value=${category.id} >${category.name}</option>`
     return html
 }
-// 子セレクトボックスの生成
-function appendChidrenBox(insertHTML) {
-    //子セレクトボックスのhtmlの生成
-    var childSelectHtml = `<div id='children-select-wrapper'>
-    <label for='child_category'>作業対象：</label>
-        <select class="listing-select-wrapper__box--select" id="child_category" name="category_id">
-        <option value="---">---</option>
-        ${insertHTML}
-        </select>
-    </div>`
-    //子セレクトボックスに追加
-    $('.listing-product-detail__category').append(childSelectHtml);
-}
-// 孫カテゴリーの表示作成
-function appendGrandChidrenBox(insertHTML) {
-    var grandchildSelectHtml = '';
-    //孫セレクトボックスのhtmlの生成
-    var grandChildSelectHtml = `<div id='grand-children-select-wrapper'>
-    <label for='grand_child_category'>目標：</label>
-    <select class="listing-select-wrapper__box--select" id="grand_child_category" name="grand_category_id">
-        <option value="---">---</option>
-        ${insertHTML}
-    </select>
-    </div>`
-    //孫セレクトボックスに追加
-    $('.listing-product-detail__category').append(grandChildSelectHtml);
-}
-//子セレクトボックス以下を削除
-function removeChildrenBox() {
-    $('#child_category').remove();
-}
-//孫セレクトボックスの削除
-function removeGrandChildBox() {
-    $('#grand_child_category').remove();
-}
-    
+
+
 //親セレクトボックス選択後のイベント
 $('#parent_category').on('change', function () {
-    //子・孫セレクトボックスの削除
-    removeChildrenBox();
-    removeGrandChildBox();
-
+    //子セレクトボックスのoptionタグの削除
+    appendInitialOption('#child_category');
     //選択された親カテゴリーの名前を取得
     var parentCategory = document.getElementById('parent_category').value
     if (parentCategory != "---") { //親カテゴリーが初期値でない場合
@@ -65,29 +37,29 @@ $('#parent_category').on('change', function () {
             data: { parent_id: parentCategory },
             dataType: 'json'
         })
-        .done(function(children) {
-            //子セレクトボックスを削除
-            removeChildrenBox();
-            //挿入するHTMLを初期化
-            var insertHTML = '';
-            //子セレクトボックスのoptionタグの生成
+        .done(function (children) {
+            //optionタグに'---'を挿入
+            appendInitialOption();
+            //サーバーから返された子要素データを繰り返す
             children.forEach(function (child) {
-                insertHTML += appendOption(child);
+                //optionタグ生成   
+                insertHTML = appendOption(child);
+                //子セレクトボックスに、optionを追加
+                $('#child_category').append(insertHTML);
             });
-            //セレクトボックスに追加
-            appendChidrenBox(insertHTML);
         })
         .fail(function () {
             alert('カテゴリー取得に失敗しました')
         })
     } else { //親カテゴリーが初期値の場合、
-        //子セレクトボックスを削除
-        removeChildrenBox();
     }
 
 })
 //子セレクトボックス選択後のイベント
-$('.listing-product-detail__category').on('change','#child_category',function () {
+$('.listing-product-detail__category').on('change', '#child_category', function () {
+    //孫セレクトボックスのoptionタグの削除
+    appendInitialOption('#grand_child_category');
+
     //選択された子カテゴリーのIDを取得
     var childId = $('#child_category option:selected').val();
     //子カテゴリーが初期値でない場合
@@ -100,15 +72,15 @@ $('.listing-product-detail__category').on('change','#child_category',function ()
             dataType:'json'
         })
         .done(function (grandChildren) {
-            //孫セレクトボックスの削除
-            removeGrandChildBox()
-            var insertHTML = '';
-            //孫要素のoptionタグを生成
-            grandChildren.forEach(function(grandChild){
-                insertHTML += appendOption(grandChild);
+            //optionタグに'---'を挿入
+            appendInitialOption();
+            //サーバーから返された孫要素データを繰り返す
+            grandChildren.forEach(function (grandChild) {
+                //optionタグ生成 
+                insertHTML = appendOption(grandChild);
+                //子セレクトボックスに、optionを追加
+                $('#grand_child_category').append(insertHTML);
             })
-            //孫要素のselectBoxを追加
-            appendGrandChidrenBox(insertHTML)
         })
         .fail(function(){
             alert('孫カテゴリー取得用のajaxリクエスト失敗')
@@ -116,8 +88,7 @@ $('.listing-product-detail__category').on('change','#child_category',function ()
     }
     //子カテゴリーが初期値の場合
     else {
-        //孫セレクトボックスの削除
-        removeGrandChildBox()
+        
     }
     
 

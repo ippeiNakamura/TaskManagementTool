@@ -2,14 +2,27 @@
     <h1><%= @title %></h1>
 <%# タスクバー %>
     <div id='task-bar'>
-        <%# プロジェクトのセレクトボックス %>
-            <div class="listing-product-detail__category">
-                <div id='parent-select-wrapper'>
-                    <%= form_for @user do |f| %>
-                        <%= label_tag :parent_category, "プロジェクト：" %>
-                        <%= f.select :project_ids,@projects.map{|project| [project.name,project.id]}, {},id:'parent_category' %>
-                    <% end %>
-                </div>
+        <div class="listing-product-detail__category">
+            <%# プロジェクトのセレクトボックス %>
+            <div id='parent-select-wrapper'>
+                <%= form_for @user do |f| %>
+                    <%= label_tag :parent_category, "プロジェクト：" %>
+                    <%= f.select :project_ids,@projects.map{|project| [project.name,project.id]},{},id:'parent_category' %>
+                <% end %>
+            </div>
+            <%# 作業対象のセレクトボックス %>
+            <div id='children-select-wrapper'>
+                <label for='child_category'>作業対象：</label>
+                <select class="listing-select-wrapper__box--select" id="child_category" name="category_id">
+                    <option value="---">---</option>
+                </select>
+            </div>
+            <%# 目標のセレクトボックス %>
+            <div id='grand-children-select-wrapper'>
+                <label for='grand_child_category'>目標：</label>
+                <select class="listing-select-wrapper__box--select" id="grand_child_category" name="grand_category_id">
+                    <option value="---">---</option>
+                </select>
             </div>
             
         <div id='unassigned-tasks'>

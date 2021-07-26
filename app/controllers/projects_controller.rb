@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-  end
+  en
 
   def update
   end

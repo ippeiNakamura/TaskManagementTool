@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.user_id = @user.id
-    FlashMessage.save_data_message(@project)
+    #FlashMessage.save_data_message(@project)
   end
 
   def edit

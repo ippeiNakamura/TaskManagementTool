@@ -5,15 +5,18 @@ RSpec.describe User, type: :model do
  it "is valid with user name,test name email and password" do
     user = User.new(
       name:"test",
-      password:"t"
+      password:"test"
     )
     expect(user).to be_valid 
  end
  #ユーザー名がなければ無効な状態であること
  it "is invalid without a name" do
-  user = User.new(name: nil)
+  user = User.new(
+    name: nil,
+    password:'test123'
+    )
   user.valid?
   expect(user.errors[:name]).to include("を入力してください")
  end
-
+ end
 end

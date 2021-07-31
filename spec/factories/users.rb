@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    name {"tanaka"}
+    sequence　(:name){|n| "Taro_#{n}"}
     password {"test1111"}
   end
 end

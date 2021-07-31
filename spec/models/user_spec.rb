@@ -21,5 +21,5 @@ RSpec.describe User, type: :model do
   user = FactoryBot.build(:user)
   user.valid?
   expect(user.errors[:name]).to include("はすでに存在します")
- end 
+ end
 end

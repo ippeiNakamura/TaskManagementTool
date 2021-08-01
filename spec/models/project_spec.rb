@@ -1,21 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  # ユーザー単位で重複したプロジェクト名を許可しないこと
-  it "does not allow duplicate project names per user",:foucus do
-    user = User.create(
-      name:'joe',
-      password:'tester'
-    )
-    user.projects.create(
-      name:"テスト案件１"
-    )
-    new_project = user.projects.build(
-      name:"テスト案件１"
-    )
-    new_project.valid?
-    expect(new_project.errors[:name]).to include("はすでに存在します")
-  end
+  let(:project) {create(:project)}
+  fit "ユーザー単位で重複したプロジェクト名を許可しないこと" do
+    #最初のプロジェクトを作成
+    project
+    #「最初のプロジェクト」と同じユーザーで、同一プロジェクトのモデルを生成
+    second_porject = Project.build(projectfirst_project.name)
+    second_porject.valid?
+    expect(second_porject.errors[:name]).to include("はすでに存在します")
+  endg
   #二人のユーザーが同じ名前を使うことを許可すること
   it 'allows two users to share a project name' do
     user = User.create(

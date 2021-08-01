@@ -15,11 +15,10 @@ RSpec.describe User, type: :model do
   user.valid?
   expect(user.errors[:name]).to include("を入力してください")
  end
- #重複するユーザー名は無効な状態であること
- it "Duplicate user names should be disabled." do
-  FactoryBot.create(:user)
-  user = FactoryBot.build(:user)
-  user.valid?
-  expect(user.errors[:name]).to include("はすでに存在します")
+ it "重複するユーザー名は無効な状態であること" do
+  first_user = FactoryBot.create(:user)
+  next_user = FactoryBot.build(:user,name:first_user.name )
+  next_user.valid?
+  expect(next_user.errors[:name]).to include("はすでに存在します")
  end 
 end

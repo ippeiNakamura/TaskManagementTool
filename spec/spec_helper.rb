@@ -9,4 +9,5 @@ RSpec.configure do |config|
 
   # specをランダム実行
   config.order = :random
+
 end

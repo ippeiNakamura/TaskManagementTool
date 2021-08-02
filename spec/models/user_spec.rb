@@ -42,23 +42,17 @@ RSpec.describe User, type: :model do
          end
       end
       #ユーザー名が既に登録されていた場合は、無効であること
-      context "When name is registered" do
-         fit "is invalid " do
-            create(user,name:"Tom")
+      context "When name is already　registered" do
+         it "is invalid " do
+            create(:user,name: "Tom")
             user.name = "Tom"
             expect(user).to be_invalid
             expect(user.errors[:name]).to include("はすでに存在します")
          end
       end
-
       #ユーザー名、パスワードが有れば有効な状態であること
-      it "is valid with user name,test name email and password" do
-      expect(FactoryBot.build(:user)).to be_valid 
-      end
-      
+      #it "is valid with user name,test name email and password" do
+      #expect(FactoryBot.build(:user)).to be_valid 
+      #end      
    end
-   describe "attribute: password" do
-      
-   end
-   
 end

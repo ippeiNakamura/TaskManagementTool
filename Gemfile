@@ -31,6 +31,7 @@ gem 'pry-byebug'
 gem 'gon'
 gem 'rb-readline'
 gem 'awesome_nested_set'
+gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails'

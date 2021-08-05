@@ -47,6 +47,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'vcr'
   gem 'webmock' #vcrの処理時に水面下で利用されるHTTPスタブ化ライブラリ
+  gem 'database_cleaner'
 end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

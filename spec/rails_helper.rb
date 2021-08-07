@@ -1,4 +1,4 @@
-ENV['RAILS_ENV'] ||= 'test'
+ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 
@@ -18,12 +18,29 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
-# support/config配下のファイルを読み込み
+#support/config配下のファイルを読み込み
 Dir[Rails.root.join("spec/support/config/*.rb")].each { |f| require f }
 Dir[Rails.root.join("spec/support/helper/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
+   # テスト全体の前に実行する処理をブロックで記述
+  config.before(:suite) do
+    # データベースをCleanする方法を'transaction'に指定
+    DatabaseCleaner.strategy = :transaction
+    # このタイミングで'transaction'でデータベースをCleanしておく
+    DatabaseCleaner.clean_with(:truncation)
+  end
 
+  # 各exampleの前および後に実行する処理をブロックで記述
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      # ここに処理を記述する
+      # ここがexampleの実行タイミング
+      example.run
+      # ここに処理を記述する ##
+    end
+  end
+  
   # focusタグがあればそれだけ実行、なければ全spec実行
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
@@ -36,16 +53,3 @@ RSpec.configure do |config|
 
   # spec実行後のbacktrace表示を簡素化
   config.filter_rails_from_backtrace!
-
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-  end
-
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
-    DatabaseCleaner.clean
-  end
-end

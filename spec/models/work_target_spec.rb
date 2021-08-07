@@ -7,13 +7,13 @@ RSpec.describe WorkTarget, type: :model do
     let(:build_work_target) {build(:work_target,name:"売り上げ集計表作成ロボ",project: project)}
     
     context "作業対象が存在する場合" do
-      fit "有効であること" do
+      it "有効であること" do
         expect(build_work_target).to be_valid
       end
     end
     context "作業対象が存在しない場合" do
       subject { page } 
-      fit "無効であること" do
+      it "無効であること" do
         build_work_target.name = nil
         expect(build_work_target).to be_invalid
 
@@ -25,6 +25,19 @@ RSpec.describe WorkTarget, type: :model do
       end
 
     end
+    context "nameが50文字以下の場合" do
+         fit "有効であること" do
+            build_work_target.name = "a" * 50
+            expect(build_work_target).to be_valid
+         end
+    end
+    context "nameが51文字以上の場合" do
+         fit "無効であること" do
+            build_work_target.name = "a" * 51
+            expect(build_work_target).to be_invalid
+            expect(build_work_target.errors[:name]).to include("50文字以内で入力してください")
+         end
+    end   
     
   end
 end

@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2021-08-05T21:04:48+09:00">2021-08-05T21:04:48+09:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2021-08-07T09:42:18+09:00">2021-08-07T09:42:18+09:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -425,7 +425,7 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#83efffe0ea628bc394cd4efbbd0f85dc6a2fd096" class="src_link" title="app/models/project.rb">app/models/project.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">8</td>
+            <td class="cell--number">7</td>
             <td class="cell--number">5</td>
             <td class="cell--number">5</td>
             <td class="cell--number">0</td>
@@ -864,7 +864,7 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#83efffe0ea628bc394cd4efbbd0f85dc6a2fd096" class="src_link" title="app/models/project.rb">app/models/project.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">8</td>
+            <td class="cell--number">7</td>
             <td class="cell--number">5</td>
             <td class="cell--number">5</td>
             <td class="cell--number">0</td>
@@ -8569,7 +8569,7 @@
 
             
 
-            <code class="ruby">    validates :name,uniqueness: {scope: :user_id}</code>
+            <code class="ruby">    validates :name,uniqueness: {scope: :user_id,message: &quot;プロジェクト名は既に存在します&quot;},presence: true</code>
           </li>
         </div>
       
@@ -8597,17 +8597,6 @@
       
         <div>
           <li class="never" data-hits="" data-linenumber="7">
-            
-            
-
-            
-
-            <code class="ruby">    </code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="8">
             
             
 

@@ -1,49 +1,33 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  let(:project) {build(:project,name:"株式会社ABC＿RPA案件")}
   describe "attribute: name" do
-    #プロジェクト名が存在する場合は、有効であること
-    context "when name is present" do
-      fit "is valid" do
-        expect(project).to be_valid
+    let(:build_project) {build(:project,name:"株式会社ABC＿RPA案件")}
+      context "プロジェクト名が存在する場合は、" do
+        fit "有効であること" do
+          expect(buiild_project).to be_valid
+        end
+      end
+      context "プロジェクト名が存在しない場合" do
+        fit "無効であること" do
+          expect(build_project).to be_invalid
+        end
       end
     end
-    #プロジェクト名が存在しない場合は、無効であること
-    context "when name is not present" do
-      fit "is invalid" do
-        expect(project).to be_invalid
-      end
-    end
-  end
-  
-  let(:project) {create(:project)}
-  describe "attribute: name" do
-    it "ユーザー単位で重複したプロジェクト名を許可しないこと" do
-      最初のプロジェクトを作成
-      project
-      「最初のプロジェクト」と同じユーザーで、同一プロジェクトのモデルを生成
 
-      expect(project).to be_invalid
-      expect(porject.errors[:name]).to include("はすでに存在します")
+
+    let!(:user){create(:user)}
+    let!(:project){create(:project,user:user,name:"株式会社ABC_RPA案件")}
+    it "ユーザー単位では、重複したプロジェクト名を許可しないこと" do
+      second_project = user.projects.build(name:"株式会社ABC_RPA案件")
+      expect(second_project).to be_invalid
+      expect(second_project.errors[:name]).to include("プロジェクト名は既に存在します")  
     end
-    #二人のユーザーが同じ名前を使うことを許可すること
-    it 'allows two users to share a project name' do
-      user = User.create(
-        name:'joe',
-        password:'tester'
-      )
-      user.projects.create(
-        name:"テスト案件１"
-      )
-      other_user = User.create(
-        name:'sanny',
-        password:'tester'
-      )
-      other_project = other_user.projects.build(
-        name:"テスト案件１"
-      )
-      expect(other_project).to be_valid
+    it "二人のユーザーが、同じ名前を使うことを許可すること" do
+      second_user = create(:user,name:"工藤真一")
+      second_project = second_user.projects.build(name:"株式会社ABC_RPA案件")
+      expect(second_project).to be_valid
     end
+    
   end
 end

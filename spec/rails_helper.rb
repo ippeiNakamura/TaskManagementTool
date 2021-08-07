@@ -9,7 +9,7 @@ require 'shoulda-matchers'
 require 'vcr'
 require 'spec_helper'
 require 'rspec/rails'
-
+require 'database_cleaner'
 # テスト実行前に未実行のmigrationファイルを検知して実行する
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -53,19 +53,3 @@ RSpec.configure do |config|
 
   # spec実行後のbacktrace表示を簡素化
   config.filter_rails_from_backtrace!
-
-  # RSpecの実行前に1度、DBM
-  config.before(:suite) do
-    DatabaseCleaner.clean
-  end
-
-  # rspecでいうexample、turnipでいうシナリオが終わるごとにDBの初期化
-  config.before(:each) do
-    DatabaseCleaner.clean
-  end  
-
-  # 最後に1度、実行
-  config.after(:suite) do
-    DatabaseCleaner.clean
-  end
-end

@@ -18,8 +18,6 @@ class FlagsController < ApplicationController
   def create
     @flag = Flag.new(flag_params)
     @flag.work_target_id = params[:work_target_id]
-    
-    end
   end
 
   def edit

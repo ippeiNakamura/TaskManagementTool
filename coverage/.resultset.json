@@ -123,22 +123,14 @@
           null
         ]
       },
-      "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/controllers/users_controller.rb": {
+      "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/controllers/projects_controller.rb": {
         "lines": [
           1,
           1,
-          null,
-          null,
           1,
           null,
-          null,
           1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
+          0,
           null,
           null,
           1,
@@ -146,6 +138,30 @@
           null,
           null,
           1,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          0,
           null,
           null
         ]
@@ -163,27 +179,15 @@
           null
         ]
       },
-      "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/controllers/sessions_controller.rb": {
+      "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/controllers/concerns/flash_message.rb": {
         "lines": [
           1,
           1,
-          1,
-          1,
-          0,
           0,
           0,
           null,
           0,
           null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          0,
-          0,
           null,
           null
         ]
@@ -248,8 +252,6 @@
           null,
           0,
           0,
-          0,
-          null,
           0,
           0,
           null,
@@ -435,8 +437,64 @@
         "branches": {
         }
       },
+      "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/controllers/users_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
       "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/controllers/tops_controller.rb": {
         "lines": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/controllers/sessions_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
           0,
           0,
           0,
@@ -605,51 +663,6 @@
         "branches": {
         }
       },
-      "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/controllers/projects_controller.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
       "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/controllers/sub_tasks_controller.rb": {
         "lines": [
           0,
@@ -739,21 +752,6 @@
         "branches": {
         }
       },
-      "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/controllers/concerns/flash_message.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
       "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/channels/application_cable/connection.rb": {
         "lines": [
           0,
@@ -775,6 +773,6 @@
         }
       }
     },
-    "timestamp": 1628391055
+    "timestamp": 1628413062
   }
 }

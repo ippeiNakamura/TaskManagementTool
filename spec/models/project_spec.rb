@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Project, type: :model do
   describe "attribute: name" do
-    
     let(:build_project) {build(:project,name:"株式会社ABC＿RPA案件")}
-
     context "プロジェクト名が存在する場合" do
       it "有効であること" do
         expect(build_project).to be_valid

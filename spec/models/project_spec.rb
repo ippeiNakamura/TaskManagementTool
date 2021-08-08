@@ -7,11 +7,18 @@ RSpec.describe Project, type: :model do
 
     context "プロジェクト名が存在する場合" do
       it "有効であること" do
-        expect(buiild_project).to be_valid
+        expect(build_project).to be_valid
       end
     end
     context "プロジェクト名が存在しない場合" do
       it "無効であること" do
+        build_project.name = nil
+        expect(build_project).to be_invalid
+
+        build_project.name = ""
+        expect(build_project).to be_invalid
+
+        build_project.name = " "
         expect(build_project).to be_invalid
       end
     end

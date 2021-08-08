@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
-  fdescribe "name属性について" do
+  describe "name属性について" do
     let(:user) {create(:user)}
     let(:project) {create(:project,user: user)}
     let(:work_target) {create(:work_target,project: project)}

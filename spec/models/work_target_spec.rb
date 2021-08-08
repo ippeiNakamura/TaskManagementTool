@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe WorkTarget, type: :model do
-  fdescribe "name属性について" do
+  describe "name属性について" do
     let(:user) {create(:user)}
     let(:project) {create(:project,user: user)}
     let(:build_work_target) {build(:work_target,name:"売り上げ集計表作成ロボ",project: project)}

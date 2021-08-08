@@ -67,6 +67,22 @@
           null
         ]
       },
+      "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/models/flag.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
       "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/models/project.rb": {
         "lines": [
           1,
@@ -75,13 +91,6 @@
           1,
           1,
           null,
-          null
-        ]
-      },
-      "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/models/application_record.rb": {
-        "lines": [
-          1,
-          1,
           null
         ]
       },
@@ -102,7 +111,8 @@
           1,
           1,
           1,
-          null,
+
+
           null
         ]
       },
@@ -132,16 +142,8 @@
         "branches": {
         }
       },
-      "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/models/flag.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
+
+
       "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/models/task.rb": {
         "lines": [
           0,
@@ -785,6 +787,6 @@
         }
       }
     },
-    "timestamp": 1628380721
+    "timestamp": 1628384583
   }
 }

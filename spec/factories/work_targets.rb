@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :work_target do
-    sequence(:name) { |n| "売り上げ集計表作成ロボ_#{n}" }
+
+    sequence(:name) { |n| "報告書作成ロボ＿#{n}" }
+
     association :project
   end
 end

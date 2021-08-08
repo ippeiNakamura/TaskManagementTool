@@ -5,7 +5,11 @@ RSpec.describe Project, type: :model do
     
     let(:build_project) {build(:project,name:"株式会社ABC＿RPA案件")}
 
+<<<<<<< HEAD
     context "プロジェクト名が存在する場合は、" do
+=======
+    context "プロジェクト名が存在する場合" do
+>>>>>>> feature/feature/create-flag-model-spec_#24
       it "有効であること" do
         expect(buiild_project).to be_valid
       end
@@ -15,7 +19,7 @@ RSpec.describe Project, type: :model do
         expect(build_project).to be_invalid
       end
     end
-  
+
     let!(:user){create(:user)}
     let!(:project){create(:project,user:user,name:"株式会社ABC_RPA案件")}
 

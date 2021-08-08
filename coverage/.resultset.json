@@ -94,6 +94,15 @@
           null
         ]
       },
+      "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/models/task.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
       "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/models/user.rb": {
         "lines": [
           1,
@@ -111,8 +120,6 @@
           1,
           1,
           1,
-
-
           null
         ]
       },
@@ -137,19 +144,6 @@
       "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/models/check_list.rb": {
         "lines": [
           0,
-          0
-        ],
-        "branches": {
-        }
-      },
-
-
-      "/Users/ippeinakamura/Desktop/PortFolio/taskManagementTool/app/models/task.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          null,
           0
         ],
         "branches": {
@@ -787,6 +781,6 @@
         }
       }
     },
-    "timestamp": 1628384583
+    "timestamp": 1628390168
   }
 }

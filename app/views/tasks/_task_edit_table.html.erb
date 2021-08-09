@@ -1,16 +1,5 @@
 <button type='submit' form='check_list'>スケジューリングの割当</button>
 <div clas='tableContainer'>
-    <table class='check_table'>
-        <tr><th>選択</th></tr>
-        <form action=<%= user_project_work_target_flag_schedules_path %> id="check_list" method="get">
-            <%= collection_check_boxes(:check_list,:task_ids,tasks,:id,:name) do |b| %>
-                <tr>
-                    <td><%= b.check_box %></td>
-                </tr>
-            <% end %>
-        </form>
-    </table>
-
     <table class='task_table'>
         <tr>
             <th>ID</th>

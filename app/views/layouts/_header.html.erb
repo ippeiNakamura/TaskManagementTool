@@ -6,17 +6,10 @@
     </h1>
     <nav class='header-nav'>
         <ul class='header-navList'>
-            <li>
-                <a href="#">目標設定</a>
-            </li>
-            <li>
-                <a href="#">タスク管理</a>
-            </li>
-            <li>
-                <a href="#">スケジューリング</a>
-            </li>
+            <li><%= link_to  "フラグ設定", work_target_flags_path(@work_target) %></li>
+            <li><%= link_to  "タスク管理", flag_tasks_path(@flag) %></li>
+            <li><%= link_to  "スケジューリング", user_schedules_path(@user) %></li>
         </ul>
     </nav>
-
 </div>
 </header>

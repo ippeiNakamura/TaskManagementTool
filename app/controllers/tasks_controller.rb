@@ -63,9 +63,6 @@
         params.require(:task).permit(:name,:assumptionCost,:memo).merge(flag_id:params[:flag_id])
       end
       def initial_model
-        @user = User.find(params[:user_id])
-        @project = Project.find(params[:project_id])
-        @work_target = WorkTarget.find(params[:work_target_id])
         @flag = Flag.find(params[:flag_id])
       end
 

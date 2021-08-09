@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'users#index'
+  root 'tops#show'
   shallow do
     resources :users do
       resources :projects do
@@ -10,17 +10,13 @@ Rails.application.routes.draw do
           end
         end
       end
+      resources :schedules do
+        collection do
+          get 'get_category_children', defaults: { format: 'json' }
+          get 'get_category_grandchildren', defaults: { format: 'json' }
+        end
+      end
     end
   end      
-          resource :top,only: [:show]
-         
-          resources :schedules do
-              collection do
-                get 'get_category_children', defaults: { format: 'json' }
-                get 'get_category_grandchildren', defaults: { format: 'json' }
-              end
-          #get 'ajax',to: 'schedules#ajax
-      end
-
   resource :session,only: [:create,:destroy]
 end

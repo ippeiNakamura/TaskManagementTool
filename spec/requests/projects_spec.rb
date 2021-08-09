@@ -11,7 +11,7 @@ RSpec.describe "Projects", type: :request do
         expect(response).to have_http_status(200)
       end
 
-      fit "projectが表示されること" do
+      it "projectが表示されること" do
         get user_project_path user,Project
         expect(response.body).to include("株式会社test_OCR案件_1")
       end

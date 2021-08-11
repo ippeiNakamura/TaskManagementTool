@@ -1,7 +1,7 @@
 TaskLunner
 ====
 TaskLunnerは、工数管理とタスク管理の両方を兼ね備えた進捗管理ツールです。  
-あなたの「納期に間に合わない」を解決します。  
+「納期に間に合わないプロジェクト」を解決します。  
 
 Things you may want to cover:
 

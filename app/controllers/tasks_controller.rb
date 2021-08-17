@@ -1,14 +1,12 @@
   class TasksController < ApplicationController
-    before_action :initial_model
-
+    #before_action :initial_model
     def index
-      @check_list = CheckList.new()
-      task_category_colection
-      assumption_total_Cost(@tasks)
-      assumptionday(@assumptionTotalCost)
-      @completionDate = @assumptionday.business_days.from_now.to_time
-      @releaseDate = Time.now
-      progress(@completionDate,@releaseDate)
+      user = User.find(params[:user_id])
+      #user_tasks = user.projects.includes(work_targets: [flags: :tasks])
+      user_tasks = User.includes(projects: [work_targets: [flags: :tasks]]).find(params[:user_id])
+      binding.pry
+      
+      
     end
 
     def new

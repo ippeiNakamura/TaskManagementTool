@@ -1,11 +1,10 @@
 <h1><%= @title %></h1>
-<%= link_to  @task_category + "の追加", new_user_project_work_target_flag_task_path(@user,@project,@work_target,@flag,@task) %>
+<%= link_to  @task_category + "の追加", new_flag_task_path(@flag,@task) %>
 <p>想定総工数：<%= @assumptionTotalCost %></p>
 <p>想定日数：<%= @assumptionday %></p>
 <p>完了予定日：<%= l @completionDate %></p>
 <p>納品予定日：<%= l @releaseDate %></p>
 <p>進捗：<%= @progress %></p>
-
 <%= render  partial: "task_edit_table", locals:{
     user: @user,
     project: @project,

@@ -1,14 +1,12 @@
   class TasksController < ApplicationController
-    before_action :initial_model
-
+    #before_action :initial_model
     def index
-      @check_list = CheckList.new()
-      task_category_colection
-      assumption_total_Cost(@tasks)
-      assumptionday(@assumptionTotalCost)
-      @completionDate = @assumptionday.business_days.from_now.to_time
-      @releaseDate = Time.now
-      progress(@completionDate,@releaseDate)
+      user = User.find(params[:user_id])
+      #user_tasks = user.projects.includes(work_targets: [flags: :tasks])
+      user_tasks = User.includes(projects: [work_targets: [flags: :tasks]]).find(params[:user_id])
+      binding.pry
+      
+      
     end
 
     def new
@@ -63,9 +61,6 @@
         params.require(:task).permit(:name,:assumptionCost,:memo).merge(flag_id:params[:flag_id])
       end
       def initial_model
-        @user = User.find(params[:user_id])
-        @project = Project.find(params[:project_id])
-        @work_target = WorkTarget.find(params[:work_target_id])
         @flag = Flag.find(params[:flag_id])
       end
 

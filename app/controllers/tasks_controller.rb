@@ -2,11 +2,15 @@
     #before_action :initial_model
     def index
       user = User.find(params[:user_id])
-      #user_tasks = user.projects.includes(work_targets: [flags: :tasks])
-      user_tasks = User.includes(projects: [work_targets: [flags: :tasks]]).find(params[:user_id])
-      binding.pry
-      
-      
+      @user_tasks = User.includes(projects: [work_targets: [flags: :tasks]]).find(params[:user_id])
+      user_tasks.projects.each do |project|
+        project.work_targets.each do |work_target|
+          work_target.flags.each do |flag|
+            flag.tasks.each do |task|
+            end
+          end
+        end
+      end
     end
 
     def new

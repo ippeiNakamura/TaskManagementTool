@@ -2,15 +2,8 @@
     #before_action :initial_model
     def index
       user = User.find(params[:user_id])
-      @user_tasks = User.includes(projects: [work_targets: [flags: :tasks]]).find(params[:user_id])
-      user_tasks.projects.each do |project|
-        project.work_targets.each do |work_target|
-          work_target.flags.each do |flag|
-            flag.tasks.each do |task|
-            end
-          end
-        end
-      end
+      #Userが持つすべてのTaskを配列で取得
+      @user_tasks = User.joins(projects: [work_targets: [flags: :tasks]]).pluck('projects.name','work_targets.name','flags.name','tasks.name')
     end
 
     def new

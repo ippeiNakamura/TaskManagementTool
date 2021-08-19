@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/index'
   get 'hello_vue/index'
   root 'tops#show'
   ##shallow do

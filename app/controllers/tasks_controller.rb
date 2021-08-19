@@ -4,7 +4,6 @@
       user = User.find(params[:user_id])
       #user_tasks = user.projects.includes(work_targets: [flags: :tasks])
       user_tasks = User.includes(projects: [work_targets: [flags: :tasks]]).find(params[:user_id])
-      binding.pry
       
       
     end

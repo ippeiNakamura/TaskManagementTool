@@ -1,9 +1,11 @@
   class TasksController < ApplicationController
     #before_action :initial_model
     def index
-      user = User.find(params[:user_id])
+      @user = User.find(params[:user_id])
+      @project = @user.projects.find(4)
+       @work_target = @project.work_targets.find(2)
       #Userが持つすべてのTaskを配列で取得
-      @user_tasks = User.joins(projects: [work_targets: [flags: :tasks]]).pluck('projects.name','work_targets.name','flags.name','tasks.name')
+      @user_tasks = User.joins(projects: [work_targets: [flags: :tasks]]).pluck('users.name','projects.name','work_targets.name','flags.name','tasks.name')
     end
 
     def new

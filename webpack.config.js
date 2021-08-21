@@ -3,7 +3,7 @@ const glob = require('glob')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const ManifestPlugin = require('webpack-manifest-plugin')
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
 
 let entries = {}
 glob.sync('./frontend/pages/**/*.js').map(function(file) {
@@ -27,7 +27,7 @@ module.exports = (env, argv) => {
         filename: 'stylesheets/[name]-[hash].css'
       }),
       new webpack.HotModuleReplacementPlugin(),
-      new ManifestPlugin({
+      new WebpackManifestPlugin({
         writeToFileEmit: true
       })
     ],
@@ -78,9 +78,7 @@ module.exports = (env, argv) => {
           options: {
             name: '[name]-[hash].[ext]',
             outputPath: 'images',
-            publicPath: function(path) {
-              return 'images/' + path
-            }
+            
           }
         }
       ]
@@ -106,11 +104,10 @@ module.exports = (env, argv) => {
     devServer: {
       host: 'localhost',
       port: 3035,
-      publicPath: 'http://localhost:3035/public/assets/',
-      contentBase: path.resolve(__dirname, 'public/assets'),
+      static: path.resolve(__dirname, 'public/assets'),
       hot: true,
-      disableHostCheck: true,
       historyApiFallback: true
     }
+    
   }
 }

@@ -9,6 +9,7 @@ gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
 gem 'mysql2', '~> 0.5'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
+gem 'rack-proxy'
 # Use SCSS for stylesheets
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

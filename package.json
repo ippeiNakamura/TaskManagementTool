@@ -46,8 +46,8 @@
     ]
   },
   "scripts": {
-  "build:dev": "webpack --progress --mode=development",
-  "build:pro": "webpack --progress --mode=production"
+    "build:dev": "webpack --progress --mode=development",
+    "build:pro": "webpack --progress --mode=production"
   },
   "browserslist": [
     "defaults"

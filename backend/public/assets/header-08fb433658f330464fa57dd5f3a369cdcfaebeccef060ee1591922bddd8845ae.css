@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/*――――――――――――――――――――――――――――――――――
+/* ヘッダー
+――――――――――――――――――――――――――――――――――――*/
+/* line 4, app/assets/stylesheets/header.scss */
+header {
+  border-bottom: 2px solid orange;
+}
+
+/* line 7, app/assets/stylesheets/header.scss */
+.header-inner {
+  max-width: 1040px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+}
+
+/* line 13, app/assets/stylesheets/header.scss */
+.heder-nav {
+  position: relative;
+}
+
+/* line 16, app/assets/stylesheets/header.scss */
+.header-navList {
+  display: flex;
+  position: absolute;
+  top: 40px;
+}
+
+/* line 21, app/assets/stylesheets/header.scss */
+.header-navList li {
+  margin: 0 20px;
+}
+
+/* line 24, app/assets/stylesheets/header.scss */
+.acount-list-inner {
+  margin: 0 0 0 auto;
+}

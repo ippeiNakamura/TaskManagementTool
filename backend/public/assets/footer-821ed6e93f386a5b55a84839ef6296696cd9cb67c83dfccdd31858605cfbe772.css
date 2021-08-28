@@ -1,0 +1,8 @@
+@charset "UTF-8";
+/*――――――――――――――――――――――――――――――――――
+/* フッター
+――――――――――――――――――――――――――――――――――――*/
+/* line 4, app/assets/stylesheets/footer.scss */
+footer {
+  border-top: 1px solid orange;
+}

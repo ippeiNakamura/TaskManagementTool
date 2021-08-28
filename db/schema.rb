@@ -10,7 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_29_024126) do
+ActiveRecord::Schema.define(version: 2021_08_28_025123) do
+
+  create_table "flags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "output_id"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["output_id"], name: "index_flags_on_output_id"
+  end
+
+  create_table "outputs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "project_id"
+    t.string "name"
+    t.time "releaseDay"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_outputs_on_project_id"
+  end
+
+  create_table "projects", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "flag_id"
+    t.string "name"
+    t.string "status"
+    t.float "assumptionCost"
+    t.float "actuallyCost"
+    t.string "memo"
+    t.date "targetDay"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "parent_id"
+    t.integer "lft"
+    t.integer "rgt"
+    t.integer "depth"
+    t.integer "children_count"
+    t.index ["depth"], name: "index_tasks_on_depth"
+    t.index ["flag_id"], name: "index_tasks_on_flag_id"
+    t.index ["lft"], name: "index_tasks_on_lft"
+    t.index ["parent_id"], name: "index_tasks_on_parent_id"
+    t.index ["rgt"], name: "index_tasks_on_rgt"
+  end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "mail"
@@ -19,4 +66,8 @@ ActiveRecord::Schema.define(version: 2021_04_29_024126) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "flags", "outputs"
+  add_foreign_key "outputs", "projects"
+  add_foreign_key "projects", "users"
+  add_foreign_key "tasks", "flags"
 end

@@ -1,9 +1,0 @@
-/* line 4, app/assets/stylesheets/schedules.scss */
-#unassigned-tasks {
-  float: left;
-  width: 150px;
-  padding: 0 10px;
-  border: 1px solid #ccc;
-  background: #eee;
-  text-align: left;
-}

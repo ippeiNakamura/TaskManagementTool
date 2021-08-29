@@ -1,24 +1,42 @@
-# README
+TaskLunner
+====
+TaskLunnerは、「工数管理」と「タスク管理」の両方を兼ね備えた進捗管理ツールです。  
+「納期に間に合わない」プロジェクトを解決します。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ーーーあとで、画像入れるーー
 
-Things you may want to cover:
+## 誰のどんな課題を解決するのか
+プロジェクトを抱えている個人開発者（エンジニアやデザイナー）が対象になります。  
+主に、下記のようなニーズに応えます。  
+＜ニーズ＞  
+  ・「予定通りにいかないプロジェクトを、上手に管理したい」  
+  ・「いつも納期に間に合わない」  
+  ・「確度の高い工数が見積れず、よく想定とずれてしまう」
+  
+TaskLunnerは、上記のような、「予定通りにいかないプロジェクト」を上手に管理し、「納期に間に合うタスクの進め方」を支援するのに役立ちます。 
 
-* Ruby version
+## 使い方
 
-* System dependencies
+## どのように解決するのか？
 
-* Configuration
+## 主な機能
+①目標設定
+②タスク管理
+③スケジューリング
+④進捗確認
 
-* Database creation
+##エンジニア向けの情報
 
-* Database initialization
+##使用技術
 
-* How to run the test suite
+##機能一覧
 
-* Services (job queues, cache servers, search engines, etc.)
+##仕様書
 
-* Deployment instructions
+##ER図
 
-* ...
+　＃＃インフラ構成図
+ 
+ ##テスト
+ 
+

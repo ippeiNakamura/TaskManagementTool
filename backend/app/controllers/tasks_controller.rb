@@ -3,7 +3,7 @@
     def index
       user = User.find(params[:user_id])
       #user_tasks = user.projects.includes(work_targets: [flags: :tasks])
-      render json: Task.al
+      render json: Task.all
     end
 
     def new
